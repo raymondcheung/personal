@@ -1,0 +1,30 @@
+:host {
+  height: 100%;
+  width: 100%;
+}
+.welcome-tile {
+  &__container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    color: var(--black-1);
+    background-color: #fff;
+    border-radius: var(--tile-border-radius);
+    box-sizing: border-box;
+  }
+  &__header {
+    font-size: var(--large-header-font-size)
+  }
+  &__header-wrapper {
+    margin: 1rem auto;
+  }
+  &__description {
+    color: var(--secondary-font-color);
+    font-size: var(--large-font-size);
+    -webkit-font-smoothing: antialiased;
+  }
+}

@@ -1,0 +1,19 @@
+<nav class="nav__bar">
+  <div class="nav__content">
+    <a href="/" class="nav__home">Raymond Cheung</a>
+    <ul class="nav__item-list">
+      <li class="nav__item"><a routerLinkActive="active" routerLink="/now">Right Now</a></li>
+      <li class="nav__item"><a routerLinkActive="active" routerLink="/work">My Work</a></li>
+      <li class="nav__item"><a routerLinkActive="active" routerLink="/tech">Tech Stack</a></li>
+    </ul>
+  </div>
+</nav>
+<nav class="subnav__bar">
+  <div class="subnav__content">
+    <ul class="subnav__item-list">
+      <li class="subnav__item"><a routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+      <li class="subnav__item"><a routerLinkActive="active" routerLink="/projects">Projects</a></li>
+      <li class="subnav__item"><a routerLinkActive="active" routerLink="/contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,14 @@
+<div class="home__page">
+  <mat-grid-list cdkDropList (cdkDropListDropped)="drop($event)" [gutterSize]="'1rem'" [cols]="3">
+    <ng-container *ngFor="let tile of (tiles | async)">
+      <mat-grid-tile cdkDrag [rowspan]="tile.rowspan || 1" [colspan]="tile.colspan || 1" [ngSwitch]="tile.component">
+        <app-welcome-tile *ngSwitchCase="'welcome'"></app-welcome-tile>
+        <app-eye-tile *ngSwitchCase="'eye'"></app-eye-tile>
+        <app-now-tile *ngSwitchCase="'now'"></app-now-tile>
+        <app-contact-tile *ngSwitchCase="'contact'"></app-contact-tile>
+        <app-work-tile *ngSwitchCase="'work'"></app-work-tile>
+        <app-project-tile [props]="tile" *ngSwitchDefault></app-project-tile>
+      </mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+</div>
