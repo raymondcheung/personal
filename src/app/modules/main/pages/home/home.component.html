@@ -7,6 +7,9 @@
         <app-now-tile *ngSwitchCase="'now'"></app-now-tile>
         <app-contact-tile *ngSwitchCase="'contact'"></app-contact-tile>
         <app-work-tile *ngSwitchCase="'work'"></app-work-tile>
+        <app-linkedin-tile *ngSwitchCase="'linkedin'"></app-linkedin-tile>
+        <!-- <app-credit-tile *ngSwitchCase="'credit'"></app-credit-tile> -->
+        <app-github-tile *ngSwitchCase="'github'"></app-github-tile>
         <app-project-tile [props]="tile" *ngSwitchDefault></app-project-tile>
       </mat-grid-tile>
     </ng-container>

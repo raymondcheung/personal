@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit {
     { rowspan: 1, colspan: 1, component: 'eye'},
     { rowspan: 1, colspan: 1, component: 'now'},
     { rowspan: 1, colspan: 1, component: 'contact'},
-    { rowspan: 1, colspan: 2, component: 'work'}
+    { rowspan: 1, colspan: 2, component: 'work'},
+    { rowspan: 1, colspan: 1, component: 'linkedin'},
+    { rowspan: 1, colspan: 1, component: 'github'},
   ]);
 
   public constructor(
@@ -34,6 +36,8 @@ export class HomeComponent implements OnInit {
         { rowspan: 1, colspan: 1, component: 'now'},
         { rowspan: 1, colspan: 1, component: 'contact'},
         { rowspan: 1, colspan: 2, component: 'work'},
+        { rowspan: 1, colspan: 1, component: 'linkedin'},
+        { rowspan: 1, colspan: 1, component: 'github'},
         ...projects.map(project => ({rowspan: 1, colspan: 1, component: 'project', ...project}))
       ])
     ).subscribe(tiles => this.tiles.next(tiles));

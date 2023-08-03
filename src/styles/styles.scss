@@ -1,9 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
 :root {
   --primary-color: #361d32;
   --secondary-color: #543c52;
   --tertiary-color: #f55951;
+
+  --background-color: #f1e8e6;
 
   --small-font-size: 0.5rem;
   --medium-font-size: 0.75rem;
@@ -21,7 +25,7 @@
 
   --tile-border-radius: 33px;
 
-  --white: #eeeeee;
+  --white: #f2f2f2;
   --black: #0a0a0a;
   --black-1: #08090a;
   --black-300: #636f7b;
@@ -37,7 +41,7 @@
 }
 
 body {
-  background-color: #f1e8e6;
+  background-color: var(--background-color);
   font-family: Inter,sans-serif;
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
@@ -57,4 +61,14 @@ html {
 }
 body {
   min-height: 100%;
+}
+
+
+.tile {
+  &:hover {
+    cursor: grab;
+  }
+  &:active {
+    cursor: grabbing;
+  }
 }

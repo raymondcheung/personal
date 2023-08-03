@@ -1,25 +1,9 @@
 import * as React from 'react';
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { FunctionComponent } from 'react';
 
 export const WelcomeTile: FunctionComponent = () => {
 
-  const timerHandle = useRef<number | null>(null);
-  const [stateCounter, setStateCounter] = useState(42);
-
-  useEffect(() => {
-    timerHandle.current = +setInterval(() => {
-      setStateCounter(stateCounter + 1);
-    }, 2500);
-
-    return () => {
-      if (timerHandle.current) {
-        clearInterval(timerHandle.current);
-        timerHandle.current = null;
-      }
-    };
-  });
-
-  return <div className="welcome-tile__container">
+  return <div className="tile welcome-tile__container">
     <header className="welcome-tile__header-wrapper">
       <h2 className="welcome-tile__header">👋  My name is Raymond, and I build web apps.</h2>
     </header>

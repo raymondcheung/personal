@@ -38,7 +38,9 @@
               "src/app/modules/main/pages/home/tiles/now/now-tile.scss",
               "src/app/modules/main/pages/home/tiles/welcome/welcome-tile.scss",
               "src/app/modules/main/pages/home/tiles/work/work-tile.scss",
-              "src/app/modules/main/pages/home/tiles/project/project-tile.scss"
+              "src/app/modules/main/pages/home/tiles/project/project-tile.scss",
+              "src/app/modules/main/pages/home/tiles/linkedin/linkedin-tile.scss",
+              "src/app/modules/main/pages/home/tiles/github/github-tile.scss"
             ],
             "scripts": []
           },

@@ -1,30 +1,12 @@
 import * as React from 'react';
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { FunctionComponent } from 'react';
 
 export interface IWorkTileProps {
-  // counter: number;
-  // onClick?: () => void;
 }
 
 export const WorkTile: FunctionComponent<IWorkTileProps> = (props: IWorkTileProps) => {
 
-  const timerHandle = useRef<number | null>(null);
-  const [stateCounter, setStateCounter] = useState(42);
-
-  useEffect(() => {
-    timerHandle.current = +setInterval(() => {
-      setStateCounter(stateCounter + 1);
-    }, 2500);
-
-    return () => {
-      if (timerHandle.current) {
-        clearInterval(timerHandle.current);
-        timerHandle.current = null;
-      }
-    };
-  });
-
-  return <div className="work-tile__container">
+  return <div className="tile work-tile__container">
     <header className="work-tile__header">
       <h2>Work</h2>
     </header>

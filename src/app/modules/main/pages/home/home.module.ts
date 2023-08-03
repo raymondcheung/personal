@@ -11,6 +11,8 @@ import { NowTileComponent } from './tiles/now/now-tile.component';
 import { WorkTileComponent } from './tiles/work/work-tile.component';
 import { ContactTileComponent } from './tiles/contact/contact-tile.component';
 import { ProjectTileComponent } from './tiles/project/project-tile.component';
+import { LinkedinTileComponent } from './tiles/linkedin/linkedin-tile.component';
+import { GithubTileComponent } from './tiles/github/github-tile.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ProjectTileComponent } from './tiles/project/project-tile.component';
     NowTileComponent,
     WorkTileComponent,
     ContactTileComponent,
-    ProjectTileComponent
+    ProjectTileComponent,
+    LinkedinTileComponent,
+    GithubTileComponent
   ],
   imports: [
     CommonModule,

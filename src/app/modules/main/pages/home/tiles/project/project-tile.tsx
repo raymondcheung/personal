@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { FunctionComponent } from 'react';
 
 export interface IProjectTileProps {
   url: string;
@@ -9,23 +9,8 @@ export interface IProjectTileProps {
 }
 
 export const ProjectTile: FunctionComponent<IProjectTileProps> = (props: IProjectTileProps) => {
-  const timerHandle = useRef<number | null>(null);
-  const [stateCounter, setStateCounter] = useState(42);
 
-  useEffect(() => {
-    timerHandle.current = +setInterval(() => {
-      setStateCounter(stateCounter + 1);
-    }, 2500);
-
-    return () => {
-      if (timerHandle.current) {
-        clearInterval(timerHandle.current);
-        timerHandle.current = null;
-      }
-    };
-  });
-
-  return <div className="project-tile__container">
+  return <div className="tile project-tile__container">
     <header className="project-tile__header">
       <h2>{props.name}</h2>
     </header>
