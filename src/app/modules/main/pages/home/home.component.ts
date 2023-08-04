@@ -1,8 +1,10 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { GithubService } from 'src/app/services/github.service';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { setProjects } from 'src/app/store/actions/github.action';
-import { map } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map, take } from 'rxjs';
+import { Project } from 'src/app/models/project';
 import { selectProjects } from 'src/app/store/selectors/github.selectors';
 
 @Component({
@@ -46,5 +48,9 @@ export class HomeComponent implements OnInit {
       this.store.dispatch(setProjects({projects}))
       this.changeDetection.detectChanges();
     });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.tiles, event.previousIndex, event.currentIndex);
   }
 }

@@ -62,3 +62,13 @@ html {
 body {
   min-height: 100%;
 }
+
+
+.tile {
+  &:hover {
+    cursor: grab;
+  }
+  &:active {
+    cursor: grabbing;
+  }
+}
