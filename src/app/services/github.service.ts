@@ -14,11 +14,12 @@ export class GithubService {
     return this.httpService.get('https://api.github.com/users/raymondcheung/repos').pipe(
       map((res: any) => {
         return res.map((repo: any) => {
+          const { name, html_url, description, updated_at } = repo;
           return {
-            url: repo.html_url,
-            name: repo.name,
-            lastUpdate: repo.updated_at,
-            description: repo.description,
+            html_url,
+            name,
+            updated_at,
+            description,
           }
         });
       })

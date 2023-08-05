@@ -8,6 +8,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { WorkRoutingModule } from './work-routing.module';
 import { WorkComponent } from './work.component';
 import { TruncatePipe } from 'src/app/pipes/truncate/truncate.pipe';
+import { sortProjectsByDatePipe } from 'src/app/pipes/sort-projects-by-date/sort-projects-by-date.pipe';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     WorkComponent,
-    TruncatePipe
+    TruncatePipe,
+    sortProjectsByDatePipe
   ],
   imports: [
     CommonModule,

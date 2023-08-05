@@ -1,6 +1,9 @@
 export interface Project {
-  url: string;
+  url: string; // github repo
+  html_url?: string; // github pages site
   name: string;
-  lastUpdate: string;
+  created_at: string;
+  updated_at: string;
+  pushed_at: string;
   description: string;
 }

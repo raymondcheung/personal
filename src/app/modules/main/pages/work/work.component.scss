@@ -1,19 +1,10 @@
-:host {
-  --github-primary-color: #006802;
-  --github-background-color: #b5fcc9;
-
-  --demo-primary-color: ;
-  --demo-background-color: ;
-
-  --blog-primary-color: ;
-  --black-backgorund-color: ;
-}
 .work {
   &__page {
-
+    section h2 {
+      padding-top: 2rem;
+    }
   }
   &__card-group {
-    margin-top: 2rem;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -22,34 +13,45 @@
   }
   &__card {
     margin-top: 2rem;
-    position: relative;
     padding: 2rem;
     border: 1px solid rgb(172, 172, 172);
-    border-radius: 6px;
+    border-radius: 32px;
     width: 48%;
-  }
-  &__card-github-button {
-    padding: .5rem .65rem;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.4rem;
-    transition: all .2s ease-in-out;
-    box-sizing: border-box;
-    div {
-      text-decoration: none;
-    }
-    &:hover {
-      border: 2px solid var(--github-primary-color);
-      background-color: var(--github-background-color);
-      color: var(--github-primary-color);
-    }
-    svg {
-      width: 40px;
-      height: 40px;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  &__card-actions {
+    display: flex;
+    justify-content: space-between;
+    button {
+      flex-grow: 2;
+      box-sizing: border-box;
+      // padding: .4rem .5rem;
+      width: 7rem;
+      height: 3rem;
+      border-radius: 4px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all .2s ease-in-out;
+      box-sizing: border-box;
+      background: transparent;
+      div {
+        text-decoration: underline;
+      }
+      &:hover {
+        border: 2px solid var(--secondary-color);
+      }
+      svg {
+        width: 30px;
+        height: 30px;
+        fill: var(--black);
+      }
     }
   }
   &__card-title {
