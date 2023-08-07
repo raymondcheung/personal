@@ -5,8 +5,6 @@ const routes: Routes = [
   { path: 'now', loadChildren: () => import('./modules/main/pages/now/now.module').then(m => m.NowModule) },
   { path: 'tech', loadChildren: () => import('./modules/main/pages/tech/tech.module').then(m => m.TechModule) },
   { path: 'work', loadChildren: () => import('./modules/main/pages/work/work.module').then(m => m.WorkModule) },
-  { path: 'projects', loadChildren: () => import('./modules/main/pages/home/home.module').then(m => m.HomeModule)},
-  { path: 'contact', loadChildren: () => import('./modules/main/pages/home/home.module').then(m => m.HomeModule)},
   { path: '', loadChildren: () => import('./modules/main/pages/home/home.module').then(m => m.HomeModule)},
 ]; // sets up routes constant where you define your routes
 

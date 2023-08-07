@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
 })
 export class WorkComponent implements OnInit {
   public workData = workData;
-  public years: string[] = ['2023', '2022', '2021', '2020'];
   public projects$: Observable<Project[]>;
   
   constructor(

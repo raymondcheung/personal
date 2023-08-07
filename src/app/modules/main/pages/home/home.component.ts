@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { GithubService } from 'src/app/services/github.service';
 import { Store } from '@ngrx/store';
 import { setProjects } from 'src/app/store/actions/github.action';
-import { map } from 'rxjs';
+import { Subscription, combineLatest, map, merge, mergeMap } from 'rxjs';
 import { selectProjects } from 'src/app/store/selectors/github.selectors';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,8 @@ import { selectProjects } from 'src/app/store/selectors/github.selectors';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
-  public tiles: any[] = [
+export class HomeComponent implements OnInit, OnDestroy {
+  public presetTiles = [
     { rowspan: 2, colspan: 2, component: 'welcome'},
     { rowspan: 1, colspan: 1, component: 'eye'},
     { rowspan: 1, colspan: 1, component: 'now'},
@@ -21,24 +22,49 @@ export class HomeComponent implements OnInit {
     { rowspan: 1, colspan: 1, component: 'linkedin'},
     { rowspan: 1, colspan: 1, component: 'github'},
   ];
+  public tiles: any[] = [];
+  protected subscriptions: Subscription[] = [];
 
   public constructor(
     protected githubService: GithubService,
     protected changeDetection: ChangeDetectorRef,
-    protected store: Store
+    protected store: Store,
+    protected router: Router,
+    protected route: ActivatedRoute
   ) {
-    this.store.select(selectProjects).pipe(
-      map(projects => [
-        { rowspan: 2, colspan: 2, component: 'welcome'},
-        { rowspan: 1, colspan: 1, component: 'eye'},
-        { rowspan: 1, colspan: 1, component: 'now'},
-        { rowspan: 1, colspan: 1, component: 'contact'},
-        { rowspan: 1, colspan: 2, component: 'work'},
-        { rowspan: 1, colspan: 1, component: 'linkedin'},
-        { rowspan: 1, colspan: 1, component: 'github'},
-        ...projects.map(project => ({rowspan: 1, colspan: 1, component: 'project', ...project}))
+    this.subscriptions.push(combineLatest([
+        this.store.select(selectProjects).pipe(
+          map(projects => 
+            [...projects].sort((a, b) => new Date(b.updated_at).valueOf() - new Date(a.updated_at).valueOf()))), // we sort projects by last updated, need to create new array bc angular complains we can't modify array
+        this.route.data
       ])
-    ).subscribe(tiles => this.tiles = tiles);
+    .subscribe(([projects, data]) => {
+      switch (data['sort']) {
+        case 'projects':
+          this.tiles = [
+            ...projects,
+            ...this.presetTiles
+          ]
+          break;
+        case 'contact':
+          this.tiles = [
+            { rowspan: 1, colspan: 1, component: 'contact'},
+            ...this.presetTiles.filter(tile => tile.component !== 'contact'),
+            ...projects,
+          ]
+          break;
+        default: 
+          this.tiles = [
+            ...this.presetTiles,
+            ...projects
+        ]
+      }
+    })
+    );
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   public ngOnInit(): void {
@@ -47,4 +73,5 @@ export class HomeComponent implements OnInit {
       this.changeDetection.detectChanges();
     });
   }
+
 }

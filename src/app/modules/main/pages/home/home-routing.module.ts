@@ -4,6 +4,20 @@ import { HomeComponent } from './home.component';
 
 const routes: Routes = [
   {
+    path: 'projects',
+    component: HomeComponent,
+    data: {
+      sort: 'projects'
+    }
+  },
+  {
+    path: 'contact',
+    component: HomeComponent,
+    data: {
+      sort: 'contact'
+    }
+  },
+  {
     path: '',
     component: HomeComponent
   }
