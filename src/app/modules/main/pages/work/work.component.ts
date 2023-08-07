@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { workData } from './work-data';
 import { GithubService } from 'src/app/services/github.service';
 import { Store } from '@ngrx/store';
 import { setProjects } from 'src/app/store/actions/github.action';
@@ -14,7 +13,6 @@ import { Observable } from 'rxjs';
 })
 export class WorkComponent implements OnInit {
   public breakpoint!: number;
-  public workData = workData;
   public projects$: Observable<Project[]>;
   
   constructor(
