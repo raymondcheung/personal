@@ -4,7 +4,6 @@
     padding: 0 2rem;
     max-width: 980px;
     background-color: var(--white);
-    border-radius: var(--tile-border-radius);
     font-size: var(--large-font-size);
     margin: 40px auto;
     display: flex;
@@ -12,5 +11,8 @@
     align-items: center;
     color: var(--black);
     height: 6rem;
+    @media(min-width: 600px) {
+      border-radius: var(--tile-border-radius);
+    }
   }
 }

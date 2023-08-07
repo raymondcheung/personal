@@ -13,6 +13,8 @@ import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  public breakpoint!: number;
+
   public presetTiles = [
     { rowspan: 2, colspan: 2, component: 'welcome'},
     { rowspan: 1, colspan: 1, component: 'eye'},
@@ -72,6 +74,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.store.dispatch(setProjects({projects}))
       this.changeDetection.detectChanges();
     });
+    this.breakpoint = (window.innerWidth <= 600) ? 1 : 3;
+  }
+  
+  onResize(event: any) {
+    this.breakpoint = (event.target.innerWidth <= 600) ? 1 : 3;
   }
 
 }

@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./work.component.scss'],
 })
 export class WorkComponent implements OnInit {
+  public breakpoint!: number;
   public workData = workData;
   public projects$: Observable<Project[]>;
   
@@ -29,5 +30,9 @@ export class WorkComponent implements OnInit {
       this.store.dispatch(setProjects({projects}))
       this.changeDetection.detectChanges();
     });
+    this.breakpoint = (window.innerWidth <= 600) ? 1 : 2;
+  }
+  onResize(event: any) {
+    this.breakpoint = (event.target.innerWidth <= 600) ? 1 : 2;
   }
 }

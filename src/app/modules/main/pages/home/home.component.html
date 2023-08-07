@@ -1,6 +1,6 @@
 <div class="home__page">
-  <mat-grid-list [gutterSize]="'1rem'" [cols]="3">
-    <mat-grid-tile *ngFor="let tile of tiles" [rowspan]="tile.rowspan || 1" [colspan]="tile.colspan || 1" [ngSwitch]="tile.component">
+  <mat-grid-list [gutterSize]="'1rem'" [cols]="breakpoint" (window:resize)="onResize($event)">
+    <mat-grid-tile *ngFor="let tile of tiles" [rowspan]="(breakpoint === 1) ? 1 : tile.rowspan || 1" [colspan]="(breakpoint === 1) ? 1 : (tile.colspan || 1)" [ngSwitch]="tile.component">
       <app-welcome-tile *ngSwitchCase="'welcome'"></app-welcome-tile>
       <app-eye-tile *ngSwitchCase="'eye'"></app-eye-tile>
       <app-now-tile *ngSwitchCase="'now'"></app-now-tile>

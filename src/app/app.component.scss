@@ -2,6 +2,9 @@
   &__content-area {
     max-width: 980px;
     margin: auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
+    @media(min-width: 600px) {
+      padding: 0 2rem;
+    }
   }
 }
