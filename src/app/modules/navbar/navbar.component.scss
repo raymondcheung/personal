@@ -18,6 +18,7 @@
 }
 .nav, .subnav {
   &__bar  a {
+    cursor: pointer;
     text-decoration: none;
     &:hover, &.active {
       color: #f55951;
