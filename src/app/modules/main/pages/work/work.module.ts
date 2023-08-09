@@ -9,6 +9,7 @@ import { WorkRoutingModule } from './work-routing.module';
 import { WorkComponent } from './work.component';
 import { TruncatePipe } from 'src/app/pipes/truncate/truncate.pipe';
 import { sortProjectsByDatePipe } from 'src/app/pipes/sort-projects-by-date/sort-projects-by-date.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     CommonModule,
     MatCardModule,
     WorkRoutingModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTooltipModule
   ]
 })
 export class WorkModule { }

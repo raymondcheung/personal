@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDe
 import { GithubService } from 'src/app/services/github.service';
 import { Store } from '@ngrx/store';
 import { setProjects } from 'src/app/store/actions/github.action';
-import { Subscription, combineLatest, map, merge, mergeMap } from 'rxjs';
+import { Observable, Subscription, combineLatest, map } from 'rxjs';
 import { selectProjects } from 'src/app/store/selectors/github.selectors';
-import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { selectIsOverlayVisible } from 'src/app/store/selectors/overlay.selectors';
 
 @Component({
@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   @ViewChildren('tooltip') tooltips: QueryList<ElementRef>;
   public breakpoint: number;
 
+  public isOverlayVisible$: Observable<boolean>;
   public presetTiles = [
     { rowspan: 2, colspan: 2, component: 'welcome'},
     { rowspan: 1, colspan: 1, component: 'eye'},
@@ -65,12 +66,15 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     })
     );
-    this.store.select(selectIsOverlayVisible).subscribe(visible => {
-      if (visible) {
-        this.tooltips.forEach((el: any) => {
-          el.show();
-        });
-      }
+    (this.isOverlayVisible$ = this.store.select(selectIsOverlayVisible)).pipe().subscribe(visible => {
+      setTimeout(() => {
+        if (visible) {
+          this.tooltips.forEach((el: any) => {
+            el.matTooltipDisabled = false;
+            el.show();
+          });
+        }
+      }, 0);
     });
   }
 

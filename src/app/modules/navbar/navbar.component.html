@@ -1,10 +1,11 @@
 <nav class="nav__bar">
-  <div class="nav__content">
+  <div class="nav__content" #tooltip="matTooltip" [matTooltipDisabled]="!(isOverlayVisible$ | async)"
+    [matTooltipPosition]="'below'" matTooltip="app-routing.module.ts: Each page above is loaded using lazy loaded modules" aria-label="Navigation links to different pages">
     <a href="" class="nav__home">Raymond Cheung</a>
     <ul class="nav__item-list">
-      <li class="nav__item"><a routerLinkActive="active" routerLink="/now">Right Now</a></li>
-      <li class="nav__item"><a routerLinkActive="active" routerLink="/work">My Work</a></li>
-      <li class="nav__item"><a (click)="showOverlay()">Tech Stack</a></li>
+      <li class="nav__item"><a routerLinkActive="active" routerLink="/now" aria-label="Navigate to Right Now page">Right Now</a></li>
+      <li class="nav__item"><a routerLinkActive="active" routerLink="/work" aria-label="Navigate to My Work page">My Work</a></li>
+      <li class="nav__item" ><a (click)="showOverlay()" aria-label="Show tooltips explaing different parts of this site">Code</a></li>
     </ul>
   </div>
 </nav>
