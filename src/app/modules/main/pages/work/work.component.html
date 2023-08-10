@@ -1,5 +1,6 @@
 <div class="work__page">
-  <mat-grid-list class="work__card-group" [gutterSize]="'4rem'" [cols]="breakpoint" (window:resize)="onResize($event)" rowHeight="22rem">
+  <mat-grid-list class="work__card-group" [gutterSize]="'4rem'" [cols]="breakpoint" (window:resize)="onResize($event)" rowHeight="22rem" [matTooltipDisabled]="!(isOverlayVisible$ | async)"
+    #tooltip="matTooltip" [matTooltipPosition]="'right'" matTooltip="github.service.ts: Each project tile is generated from live data pulled from Github API" aria-label="Navigation links to different projects worked on">
     <mat-grid-tile *ngFor="let project of (projects$ | async) | sortProjectsByDate" [rowspan]="1" [colspan]="1">
       <mat-card class="work__card">
         <header>

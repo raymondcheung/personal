@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { GithubService } from 'src/app/services/github.service';
 import { Store } from '@ngrx/store';
 import { setProjects } from 'src/app/store/actions/github.action';
-import { Subscription, combineLatest, map, merge, mergeMap } from 'rxjs';
+import { Observable, Subscription, combineLatest, map } from 'rxjs';
 import { selectProjects } from 'src/app/store/selectors/github.selectors';
-import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { selectIsOverlayVisible } from 'src/app/store/selectors/overlay.selectors';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +14,10 @@ import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public breakpoint!: number;
+  @ViewChildren('tooltip') tooltips: QueryList<ElementRef>;
+  public breakpoint: number;
 
+  public isOverlayVisible$: Observable<boolean>;
   public presetTiles = [
     { rowspan: 2, colspan: 2, component: 'welcome'},
     { rowspan: 1, colspan: 1, component: 'eye'},
@@ -63,6 +66,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     })
     );
+    (this.isOverlayVisible$ = this.store.select(selectIsOverlayVisible)).pipe().subscribe(visible => {
+      setTimeout(() => {
+        if (visible) {
+          this.tooltips.forEach((el: any) => {
+            el.matTooltipDisabled = false;
+            el.show();
+          });
+        }
+      }, 0);
+    });
   }
 
   public ngOnDestroy(): void {

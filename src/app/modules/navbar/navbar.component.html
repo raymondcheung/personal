@@ -1,10 +1,14 @@
 <nav class="nav__bar">
-  <div class="nav__content">
-    <a href="/" class="nav__home">Raymond Cheung</a>
+  <div class="nav__content" #tooltip="matTooltip" [matTooltipDisabled]="!(isOverlayVisible$ | async)"
+    [matTooltipPosition]="'below'" matTooltip="app-routing.module.ts: Each page above is loaded using lazy loaded modules" aria-label="Navigation links to different pages">
+    <a href="" class="nav__home">Raymond Cheung</a>
     <ul class="nav__item-list">
-      <li class="nav__item"><a routerLinkActive="active" routerLink="/now">Right Now</a></li>
-      <li class="nav__item"><a routerLinkActive="active" routerLink="/work">My Work</a></li>
-      <!-- <li class="nav__item"><a routerLinkActive="active" routerLink="/tech">Tech Stack</a></li> -->
+      <li class="nav__item"><a routerLinkActive="active" routerLink="/now" aria-label="Navigate to Right Now page">Right Now</a></li>
+      <li class="nav__item"><a routerLinkActive="active" routerLink="/work" aria-label="Navigate to My Work page">My Work</a></li>
+      <li class="nav__item highlightable" ><a class="nav__item-link highlightable" (click)="toggleOverlay()" [ngClass]="{'active': (isOverlayVisible$ | async)}" aria-label="Show tooltips explaing different parts of this site">
+        Code
+        <svg class="nav__item-highlight" viewBox="0 0 70 36"> <path d="M6.974 30.815h56.05c2.503 0 12.512-34.5-27.524-28-51.66 8.388-34.606 31.162-8.508 31.5 77.07 1 27.525-41-3.503-25"></path> </svg>
+      </a></li>
     </ul>
   </div>
 </nav>

@@ -1,14 +1,15 @@
 <div class="home__page">
-  <mat-grid-list [gutterSize]="'1rem'" [cols]="breakpoint" (window:resize)="onResize($event)">
+  <mat-grid-list [gutterSize]="'1rem'" [cols]="breakpoint" (window:resize)="onResize($event)" #tooltip="matTooltip" [matTooltipDisabled]="true" [matTooltipDisabled]="!(isOverlayVisible$ | async)"
+    [matTooltipPosition]="'right'" matTooltip="welcome-tile.tsx: Each tile is a React component embedded in parent Angular application" aria-label="Tiles that display information">
     <mat-grid-tile *ngFor="let tile of tiles" [rowspan]="(breakpoint === 1) ? 1 : tile.rowspan || 1" [colspan]="(breakpoint === 1) ? 1 : (tile.colspan || 1)" [ngSwitch]="tile.component">
-      <app-welcome-tile *ngSwitchCase="'welcome'"></app-welcome-tile>
-      <app-eye-tile *ngSwitchCase="'eye'"></app-eye-tile>
-      <app-now-tile *ngSwitchCase="'now'"></app-now-tile>
-      <app-contact-tile *ngSwitchCase="'contact'"></app-contact-tile>
-      <app-work-tile *ngSwitchCase="'work'"></app-work-tile>
-      <app-linkedin-tile *ngSwitchCase="'linkedin'"></app-linkedin-tile>
-      <app-github-tile *ngSwitchCase="'github'"></app-github-tile>
-      <app-project-tile [props]="tile" *ngSwitchDefault></app-project-tile>
+      <app-welcome-tile *ngSwitchCase="'welcome'" aria-label="Tile that displays information"></app-welcome-tile>
+      <app-eye-tile *ngSwitchCase="'eye'" aria-label="Tile that displays information"></app-eye-tile>
+      <app-now-tile *ngSwitchCase="'now'" aria-label="Tile that displays information"></app-now-tile>
+      <app-contact-tile *ngSwitchCase="'contact'" aria-label="Tile that displays information"></app-contact-tile>
+      <app-work-tile *ngSwitchCase="'work'" aria-label="Tile that displays information"></app-work-tile>
+      <app-linkedin-tile *ngSwitchCase="'linkedin'" aria-label="Tile that displays information"></app-linkedin-tile>
+      <app-github-tile *ngSwitchCase="'github'" aria-label="Tile that displays information"></app-github-tile>
+      <app-project-tile [props]="tile" *ngSwitchDefault aria-label="Tile that displays information"></app-project-tile>
       <div class="home__tile-placeholder"></div>
     </mat-grid-tile>
   </mat-grid-list>

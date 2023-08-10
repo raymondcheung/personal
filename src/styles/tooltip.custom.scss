@@ -1,0 +1,46 @@
+mat-tooltip-component {
+  .mdc-tooltip .mdc-tooltip__surface {
+    padding: 20px;
+    font-size: .75rem;
+    line-height: 1.5rem;
+    background-color: rgba(12, 12, 12, 0.8);
+    color: white;
+    // border: 1px solid black;
+    border: none;
+    border-radius: 10px;
+    overflow-wrap: break-word;
+  }
+}
+.mat-mdc-tooltip-panel {
+  // to make possible place arrow pseudo element outside tooltip with absolute positioning
+  overflow: visible;
+  // position: relative;
+  &.mat-mdc-tooltip-panel-right {
+      &::after {
+          position: absolute;
+          content: '';
+          display: inline-block;
+          background-color: rgba(12, 12, 12, 0.8);
+          clip-path: polygon(50% 0, 0 50%, 50% 100%);
+          left: -7px;
+          width: 15px;
+          height: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+      }
+  }
+  &.mat-mdc-tooltip-panel-below {
+      &::after {
+          position: absolute;
+          content: '';
+          display: inline-block;
+          background-color: rgba(12, 12, 12, 0.8);
+          clip-path: polygon(50% 0%, 100% 50%, 0% 50%, -50% 100%);
+          left: 50%;
+          width: 15px;
+          height: 15px;
+          top: 0;
+          transform: translateY(-50%) translateX(-50%);
+      }
+  }
+}
