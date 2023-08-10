@@ -40,8 +40,10 @@
   }
 }
 .nav, .subnav {
-  &__bar  a:not(.highlightable) {
+  &__bar a {
     cursor: pointer;
+  }
+  &__bar  a:not(.highlightable) {
     text-decoration: none;
     &:hover, &.active {
       color: #f55951;
