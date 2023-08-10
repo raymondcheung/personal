@@ -1,6 +1,5 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction } from '@ngrx/store';
 
-export const setOverlayVisible = createAction(
-  '[Overlay] Set Overlay Visible',
-  props<{ visible: boolean }>()  
+export const toggleOverlayVisible = createAction(
+  '[Overlay] Toggle Overlay Visible'
 );

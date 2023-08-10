@@ -1,7 +1,7 @@
 import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { setOverlayVisible } from 'src/app/store/actions/overlay.action';
+import { toggleOverlayVisible } from 'src/app/store/actions/overlay.action';
 import { selectIsOverlayVisible } from 'src/app/store/selectors/overlay.selectors';
 
 @Component({
@@ -21,14 +21,14 @@ export class NavbarComponent {
         if (visible) {
           this.tooltips.forEach((el: any) => {
             el.matTooltipDisabled = false;
-            el.show();
+            el.show()
           });
         }
       }, 0);
     });
   }
 
-  public showOverlay() {
-    this.store.dispatch(setOverlayVisible({visible: true}));
+  public toggleOverlay() {
+    this.store.dispatch(toggleOverlayVisible());
   }
 }
