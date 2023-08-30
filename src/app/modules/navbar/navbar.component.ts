@@ -1,6 +1,6 @@
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, fromEvent, tap } from 'rxjs';
 import { toggleOverlayVisible } from 'src/app/store/actions/overlay.action';
 import { selectIsOverlayVisible } from 'src/app/store/selectors/overlay.selectors';
 
@@ -9,7 +9,8 @@ import { selectIsOverlayVisible } from 'src/app/store/selectors/overlay.selector
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements AfterViewInit  {
+  @ViewChild('toggleOverlayButton') toggleOverlayButton: ElementRef;
   @ViewChildren('tooltip') tooltips: QueryList<ElementRef>;
   public isOverlayVisible$: Observable<boolean>;
 
@@ -28,7 +29,9 @@ export class NavbarComponent {
     });
   }
 
-  public toggleOverlay() {
-    this.store.dispatch(toggleOverlayVisible());
+  public ngAfterViewInit(): void {
+    fromEvent(this.toggleOverlayButton.nativeElement, 'click').pipe(
+      tap(() => this.store.dispatch(toggleOverlayVisible()))
+    ).subscribe();
   }
 }

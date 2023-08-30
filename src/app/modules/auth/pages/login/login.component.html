@@ -1,0 +1,13 @@
+<div class="login__page">
+  <mat-form-field [floatLabel]="'auto'">
+    <mat-label>Enter Username</mat-label>
+    <input title="username" matInput type="text" [formControl]="username">
+  </mat-form-field>
+
+  <mat-form-field [floatLabel]="'auto'">
+    <mat-label>Enter Password</mat-label>
+    <input title="password" matInput type="password" [formControl]="password">
+  </mat-form-field>
+
+  <button mat-raised-button (click)="submit()">Primary</button>
+</div>
