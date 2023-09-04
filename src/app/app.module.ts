@@ -17,6 +17,9 @@ import { githubReducer } from '@store/reducers/github.reducer';
 import { overlayReducer } from '@store/reducers/overlay.reducer';
 import { AuthenticationService } from '@services/authentication.service';
 import { AuthenticationInterceptor } from '@services/interceptors/authentication.interceptor';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthenticationEffects } from '@store/effects/authentication.effects';
+import { authenticationReducer } from '@store/reducers/authentication.reducer';
 
 @NgModule({
   declarations: [
@@ -29,10 +32,12 @@ import { AuthenticationInterceptor } from '@services/interceptors/authentication
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ 
+    StoreModule.forRoot({
+      authentication: authenticationReducer,
       github: githubReducer,
       overlay: overlayReducer
     }),
+    EffectsModule.forRoot(AuthenticationEffects),
     MatTooltipModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
