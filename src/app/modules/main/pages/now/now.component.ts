@@ -9,7 +9,5 @@ import { BehaviorSubject } from 'rxjs';
 export class NowComponent {
   lastUpdate: BehaviorSubject<string> = new BehaviorSubject("July 27th 2023");
   
-  constructor() {
-    console.log("YESY");
-  }
+  public constructor() {}
 }
